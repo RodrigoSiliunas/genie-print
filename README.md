@@ -179,6 +179,20 @@ Se algum arquivo já existir no remoto, ele pergunta o que fazer:
   [S]obrescrever, [I]gnorar, [T]odos, [N]enhum, [A]bortar:
 ```
 
+## `AGENTS.md` no remoto
+
+Na primeira vez que o Genie Print roda contra um destino, ele envia um `AGENTS.md` pra pasta remota explicando pra qualquer agente de IA (Claude Code, Cursor, etc.) que esteja com acesso à pasta:
+
+- o que esse diretório é
+- como as imagens aparecem ali
+- a convenção de numeração (`Image #N.<ext>`)
+- como o usuário referencia elas (`@/path/Image #N.png`)
+- o que **não** fazer (não comitar, não inferir semântica do número)
+
+A operação é **idempotente**: se `AGENTS.md` já existir na pasta remota, o Genie Print não toca — sua versão customizada sobrevive pra sempre. Pra forçar reupload, delete o arquivo no remoto.
+
+Pra desligar completamente, use `--no-agents-md` ou responda "n" no wizard.
+
 ## Flags
 
 | Flag | O que faz |
@@ -190,6 +204,7 @@ Se algum arquivo já existir no remoto, ele pergunta o que fazer:
 | `--clipboard` | Também monitora o clipboard do SO |
 | `--dry-run` | Mostra o que faria, sem executar SCP/SSH |
 | `--no-clipboard` | Não copia o `@path` pro clipboard ao final |
+| `--no-agents-md` | Não envia o `AGENTS.md` de contexto pra pasta remota |
 | `--no-color` | Desliga cores ANSI |
 | `--no-banner` | Não imprime o banner ASCII |
 | `--verbose` | Log em nível DEBUG |

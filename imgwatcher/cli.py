@@ -9,7 +9,7 @@ import threading
 from pathlib import Path
 from typing import Optional, Sequence
 
-from . import clipboard_watcher, display, logging_setup, sync, watcher, wizard
+from . import agents_md, clipboard_watcher, display, logging_setup, sync, watcher, wizard
 from .config import DEFAULT_WATCH_DIR
 from .processor import ImageProcessor
 from .transport import SCPTransport
@@ -50,6 +50,11 @@ Exemplos:
         action="store_true",
         help="Tambem monitora o clipboard do SO (Win+Shift+S, snipping tool, etc.)",
     )
+    parser.add_argument(
+        "--no-agents-md",
+        action="store_true",
+        help="Nao envia o AGENTS.md de contexto pra pasta remota",
+    )
     return parser
 
 
@@ -88,6 +93,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
 
     transport = SCPTransport(host=args.host, dest_dir=args.dest, dry_run=args.dry_run)
+
+    if not args.no_agents_md:
+        agents_md.ensure_uploaded(transport)
 
     if args.sync:
         sync.run(watch_dir, transport)
