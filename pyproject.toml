@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+markers = [
+    "live: real network calls against LIVE_TEST_HOST (set RUN_LIVE_TESTS=1 to enable)",
+]
+addopts = "-ra --strict-markers"

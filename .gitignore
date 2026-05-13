@@ -1,0 +1,51 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+
+# --- Virtual environment ---
+.venv/
+venv/
+env/
+
+# --- Test artifacts ---
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.mypy_cache/
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Project state (machine-local) ---
+.imgwatcher-wizard.json
+config.sh
+
+# --- Watch folder contents ---
+# Track the folder via .gitkeep, ignore everything inside.
+Images/*
+!Images/.gitkeep
+clipboard-*.png
+
+# --- Scratch / smoke logs ---
+*.log
+*.tmp
+*.bak
+test-*.txt
+smoke*.txt
+final*.txt
+t.txt

@@ -1,0 +1,11 @@
+# Always check out shell scripts with LF line endings, even on Windows,
+# so they remain executable in WSL / Linux / macOS without surprises.
+*.sh        text eol=lf
+genie-print.sh text eol=lf
+# Windows-only batch files keep CRLF.
+*.bat       text eol=crlf
+# Python and config files use LF.
+*.py        text eol=lf
+*.toml      text eol=lf
+*.json      text eol=lf
+*.md        text
